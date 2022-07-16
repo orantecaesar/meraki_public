@@ -49,7 +49,7 @@ networks = [n for n in networks if 'switch' in n['productTypes']]
 
 # For each network, get all Meraki devices
 
-for network in networks[:1]:
+for network in networks:
     print(f"Obtaining switches in network: {network['name']}.")
     try:
         switches = dashboard.networks.getNetworkDevices(networkId=network['id'])
@@ -78,7 +78,7 @@ for network in networks[:1]:
         for port in switch_ports:
             if port['type'] == 'access':
 
-                # New port configuration change
+                # New port configuration
                 switch_port_conf = {
                     'rstpEnabled': False,
                     'stpGuard': 'bpdu guard'
